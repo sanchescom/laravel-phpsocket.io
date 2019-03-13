@@ -3,15 +3,18 @@
 namespace Sanchescom\LaravelSocketIO;
 
 use Illuminate\Support\ServiceProvider;
+use PHPSocketIO\SocketIO;
+use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 
 class SocketServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
+     * List of sockets with port and additional settings.
      *
-     * @var bool
+     * @var array
      */
-    protected $defer = false;
+    protected $sockets = [];
+
 
     /**
      * Bootstrap the application events.
@@ -20,6 +23,7 @@ class SocketServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
     }
 
 
@@ -30,5 +34,18 @@ class SocketServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        foreach ($this->sockets as $handler => $props) {
+            list($port, $options) = $props;
+
+            /** @var SocketIO $socket */
+            $socket = $this->app->make(SocketIO::class, [
+                'port' => $port,
+                'opts' => $options,
+            ]);
+
+            /** @var AbstractSocket $socketHandler */
+            $socketHandler = $this->app->make($handler);
+            $socketHandler->call($socket);
+        }
     }
 }

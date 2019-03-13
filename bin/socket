@@ -1,6 +1,11 @@
 #!/usr/bin/env php
 <?php
 
+if (is_file(__DIR__.'../../bootstrap/app.php') === false) {
+    fwrite(STDERR, 'Install dependencies using Composer.'.PHP_EOL);
+    exit(1);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
