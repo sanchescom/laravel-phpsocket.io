@@ -3,8 +3,8 @@
     "description": "Laravel integrated phpsocket.io",
     "keywords": ["laravel", "socket.io"],
     "require": {
-        "php" : "^7.0",
-        "illuminate/support": "~5.5.0",
+        "php" : "^7.2",
+        "illuminate/support": "~5.8.*",
         "workerman/phpsocket.io": "^1.1"
     },
     "require-dev": {
