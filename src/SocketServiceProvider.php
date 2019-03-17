@@ -34,17 +34,16 @@ class SocketServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        foreach ($this->sockets as $handler => $props) {
-            list($port, $options) = $props;
+        foreach ($this->sockets as $handler) {
+            /** @var AbstractSocket $socketHandler */
+            $socketHandler = $this->app->make($handler);
 
             /** @var SocketIO $socket */
             $socket = $this->app->make(SocketIO::class, [
-                'port' => $port,
-                'opts' => $options,
+                'port' => $socketHandler->getPort(),
+                'opts' => $socketHandler->getOptions(),
             ]);
 
-            /** @var AbstractSocket $socketHandler */
-            $socketHandler = $this->app->make($handler);
             $socketHandler->call($socket);
         }
     }
