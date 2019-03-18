@@ -1,11 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-if (is_file(__DIR__.'../../bootstrap/app.php') === false) {
-    fwrite(STDERR, 'Install dependencies using Composer.'.PHP_EOL);
-    exit(1);
-}
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -17,7 +12,14 @@ if (is_file(__DIR__.'../../bootstrap/app.php') === false) {
 |
 */
 
-$app = require __DIR__.'../../bootstrap/app.php';
+if (file_exists(__DIR__ . '/../../bootstrap/app.php')) {
+    $app = require __DIR__ . '/../../bootstrap/app.php';
+} elseif (file_exists(__DIR__ . '/../../../../bootstrap/app.php')) {
+    $app = require __DIR__ . '/../../../../bootstrap/app.php';
+} else {
+    fwrite(STDERR, 'Install dependencies using Composer.'.PHP_EOL);
+    exit(1);
+}
 
 use Workerman\Worker;
 

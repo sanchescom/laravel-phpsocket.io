@@ -7,6 +7,17 @@ use PHPSocketIO\SocketIO;
 abstract class AbstractSocket
 {
     /**
+     * @var int
+     */
+    protected $port;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+
+    /**
      * @param SocketIO $socketIO
      */
     abstract public function call(SocketIO $socketIO);
@@ -14,10 +25,16 @@ abstract class AbstractSocket
     /**
      * Getting socket port
      */
-    abstract public function getPort();
+    public function getPort()
+    {
+        return $this->port;
+    }
 
     /**
      * Getting socket options
      */
-    abstract public function getOptions();
+    public function getOptions()
+    {
+        return $this->options;
+    }
 }
