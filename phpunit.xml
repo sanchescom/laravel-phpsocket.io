@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
+<phpunit bootstrap="./vendor/autoload.php"
+         backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
          colors="true"
          verbose="true"
          convertErrorsToExceptions="true"
@@ -9,15 +9,15 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false">
+>
     <testsuites>
         <testsuite name="Laravel Socket.IO Test">
-            <directory>tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist>
-            <directory>src/</directory>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
 </phpunit>

@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 use PHPSocketIO\SocketIO;
 use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 
+/**
+ * Class SocketServiceProvider
+ * @package Sanchescom\LaravelSocketIO
+ */
 class SocketServiceProvider extends ServiceProvider
 {
     /**
@@ -19,20 +23,10 @@ class SocketServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application events.
      *
-     * @return void
+     * @return bool
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function boot()
-    {
-        //
-    }
-
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    public function boot(): bool
     {
         foreach ($this->sockets as $handler) {
             $socketHandler = $this->makeSocketHandler($handler);
@@ -43,13 +37,16 @@ class SocketServiceProvider extends ServiceProvider
                 )
             );
         }
+
+        return true;
     }
 
     /**
-     * Creating socket handler instance
+     * Make socket handler instance
      *
-     * @param $handler
+     * @param string $handler
      * @return AbstractSocket
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function makeSocketHandler($handler): AbstractSocket
     {
@@ -57,9 +54,12 @@ class SocketServiceProvider extends ServiceProvider
     }
 
     /**
+     * Make socket instance
+     *
      * @param int $port
      * @param array $options
      * @return SocketIO
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     protected function makeSocket(int $port, array $options = []): SocketIO
     {

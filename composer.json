@@ -1,6 +1,6 @@
 {
     "name": "sanchescom/laravel-phpsocket.io",
-    "description": "Laravel integrated phpsocket.io",
+    "description": "Laravel phpsocket.io",
     "keywords": ["laravel", "socket.io"],
     "require": {
         "php" : "^7.2",
@@ -8,7 +8,9 @@
         "workerman/phpsocket.io": "^1.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.0"
+        "phpunit/phpunit": "~8.0",
+        "orchestra/testbench": "^3.8",
+        "mockery/mockery": "^1.2"
     },
     "license": "MIT",
     "authors": [
@@ -17,7 +19,7 @@
             "email": "sanches.com@mail.ru"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Sanchescom\\LaravelSocketIO\\": "src/"
@@ -32,10 +34,7 @@
         "laravel": {
             "providers": [
                 "Sanchescom\\LaravelSocketIO\\ServiceProvider"
-            ],
-            "aliases": {
-                "SocketIO": "Sanchescom\\LaravelSocketIO\\Facade"
-            }
+            ]
         }
     },
     "bin": [
