@@ -7,6 +7,9 @@ use ReflectionException;
 use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 use Sanchescom\LaravelSocketIO\Test\BaseTestCase;
 
+/**
+ * Class AbstractSocketTest
+ */
 class AbstractSocketTest extends BaseTestCase
 {
     /**
@@ -17,6 +20,7 @@ class AbstractSocketTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @throws ReflectionException
      */
     public function it_should_return_a_number_for_port()
@@ -27,13 +31,14 @@ class AbstractSocketTest extends BaseTestCase
 
         $this->setProperty($stub, 'port', 2020);
 
-        /** @var AbstractSocket $stub */
+        /* @var AbstractSocket $stub */
         $this->assertIsInt($stub->getPort());
     }
 
 
     /**
      * @test
+     *
      * @throws ReflectionException
      */
     public function it_should_return_an_array_for_options()
@@ -44,7 +49,7 @@ class AbstractSocketTest extends BaseTestCase
 
         $this->setProperty($stub, 'options', []);
 
-        /** @var AbstractSocket $stub */
+        /* @var AbstractSocket $stub */
         $this->assertIsArray($stub->getOptions());
     }
 
@@ -52,8 +57,10 @@ class AbstractSocketTest extends BaseTestCase
      * @param $stub
      * @param $name
      * @param $value
-     * @return void
+     *
      * @throws ReflectionException
+     *
+     * @return void
      */
     protected function setProperty($stub, $name, $value)
     {

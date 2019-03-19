@@ -4,8 +4,9 @@ namespace Sanchescom\LaravelSocketIO\Test;
 
 use Mockery;
 use PHPUnit\Framework\TestCase;
+
 /**
- * @package Neomerx\Tests\CorsIlluminate
+ * Class BaseTestCase
  */
 abstract class BaseTestCase extends TestCase
 {

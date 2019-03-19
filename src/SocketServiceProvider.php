@@ -8,7 +8,6 @@ use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 
 /**
  * Class SocketServiceProvider
- * @package Sanchescom\LaravelSocketIO
  */
 class SocketServiceProvider extends ServiceProvider
 {
@@ -23,8 +22,9 @@ class SocketServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application events.
      *
-     * @return bool
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return bool
      */
     public function boot(): bool
     {
@@ -42,11 +42,13 @@ class SocketServiceProvider extends ServiceProvider
     }
 
     /**
-     * Make socket handler instance
+     * Make socket handler instance.
      *
      * @param string $handler
-     * @return AbstractSocket
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return AbstractSocket
      */
     protected function makeSocketHandler($handler): AbstractSocket
     {
@@ -54,12 +56,14 @@ class SocketServiceProvider extends ServiceProvider
     }
 
     /**
-     * Make socket instance
+     * Make socket instance.
      *
      * @param int $port
      * @param array $options
-     * @return SocketIO
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @return SocketIO
      */
     protected function makeSocket(int $port, array $options = []): SocketIO
     {

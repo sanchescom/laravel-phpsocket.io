@@ -6,19 +6,18 @@ use PHPSocketIO\SocketIO;
 
 /**
  * Class AbstractSocket
- * @package Sanchescom\LaravelSocketIO\Sockets
  */
 abstract class AbstractSocket
 {
     /**
-     * Listening port
+     * Listening port.
      *
      * @var int
      */
     protected $port;
 
     /**
-     * Addition options
+     * Addition options.
      *
      * @var array
      */
@@ -27,12 +26,14 @@ abstract class AbstractSocket
 
     /**
      * @param SocketIO $socketIO
+     *
      * @return void
      */
     abstract public function call(SocketIO $socketIO): void;
 
     /**
-     * Getting socket port
+     * Getting socket port.
+     *
      * @return int
      */
     public function getPort(): int
@@ -41,7 +42,8 @@ abstract class AbstractSocket
     }
 
     /**
-     * Getting socket options
+     * Getting socket options.
+     *
      * @return array
      */
     public function getOptions(): array

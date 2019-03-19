@@ -39,8 +39,8 @@ class SocketServiceProviderTest extends BaseTestCase
         parent::setUp();
 
         $this->handler = Mockery::mock(AbstractSocket::class);
-        $this->socket  = Mockery::mock(SocketIO::class);
-        $this->app     = Mockery::mock(ApplicationInterface::class);
+        $this->socket = Mockery::mock(SocketIO::class);
+        $this->app = Mockery::mock(ApplicationInterface::class);
 
         $this->app->shouldReceive('make')
             ->with(AbstractSocket::class)
@@ -53,7 +53,7 @@ class SocketServiceProviderTest extends BaseTestCase
             ])
             ->andReturn($this->socket);
 
-        /** @var ApplicationInterface $app */
+        /* @var ApplicationInterface $app */
         $app = $this->app;
 
         $this->provider = new SocketServiceProvider($app);
@@ -61,6 +61,7 @@ class SocketServiceProviderTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function it_should_return_true_in_booting()
@@ -70,6 +71,7 @@ class SocketServiceProviderTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @throws ReflectionException
      */
     public function it_should_return_abstract_handler_with_making_socket()
@@ -82,6 +84,7 @@ class SocketServiceProviderTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @throws ReflectionException
      */
     public function it_should_return_socket_io_with_making_socket()
@@ -94,12 +97,14 @@ class SocketServiceProviderTest extends BaseTestCase
 
     /**
      * @param string $name
-     * @return ReflectionMethod
+     *
      * @throws ReflectionException
+     *
+     * @return ReflectionMethod
      */
     protected static function getMethod($name)
     {
-        $class  = new ReflectionClass(SocketServiceProvider::class);
+        $class = new ReflectionClass(SocketServiceProvider::class);
         $method = $class->getMethod($name);
         $method->setAccessible(true);
 
