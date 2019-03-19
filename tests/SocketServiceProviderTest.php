@@ -42,12 +42,10 @@ class SocketServiceProviderTest extends BaseTestCase
         $this->socket  = Mockery::mock(SocketIO::class);
         $this->app     = Mockery::mock(ApplicationInterface::class);
 
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
         $this->app->shouldReceive('make')
             ->with(AbstractSocket::class)
             ->andReturn($this->handler);
 
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
         $this->app->shouldReceive('make')
             ->with(SocketIO::class, [
                 'port' => 2020,
@@ -62,19 +60,19 @@ class SocketServiceProviderTest extends BaseTestCase
     }
 
     /**
-     * Test boot provider.
+     * @test
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function testBoot()
+    public function it_should_return_true_in_booting()
     {
         $this->assertTrue($this->provider->boot());
     }
 
     /**
-     * Test makeSocketHandler method.
+     * @test
      * @throws ReflectionException
      */
-    public function testMakeSocketHandler()
+    public function it_should_return_abstract_handler_with_making_socket()
     {
         $method = $this->getMethod('makeSocketHandler');
         $socketHandler = $method->invokeArgs($this->provider, [$this->handler]);
@@ -83,10 +81,10 @@ class SocketServiceProviderTest extends BaseTestCase
     }
 
     /**
-     * Test makeSocket method.
+     * @test
      * @throws ReflectionException
      */
-    public function testMakeSocket()
+    public function it_should_return_socket_io_with_making_socket()
     {
         $method = $this->getMethod('makeSocket');
         $socket = $method->invokeArgs($this->provider, [2020, []]);

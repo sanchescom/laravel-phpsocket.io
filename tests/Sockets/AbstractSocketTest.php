@@ -3,6 +3,7 @@
 namespace Sanchescom\LaravelSocketIO\Test\Sockets;
 
 use ReflectionClass;
+use ReflectionException;
 use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 use Sanchescom\LaravelSocketIO\Test\BaseTestCase;
 
@@ -15,10 +16,10 @@ class AbstractSocketTest extends BaseTestCase
 
 
     /**
-     * Test getPort method.
-     * @throws \ReflectionException
+     * @test
+     * @throws ReflectionException
      */
-    public function testGetPort()
+    public function it_should_return_a_number_for_port()
     {
         $stub = $this->getMockForAbstractClass(AbstractSocket::class);
         $stub->expects($this->any())
@@ -32,10 +33,10 @@ class AbstractSocketTest extends BaseTestCase
 
 
     /**
-     * Test getPort method.
-     * @throws \ReflectionException
+     * @test
+     * @throws ReflectionException
      */
-    public function testGetOptions()
+    public function it_should_return_an_array_for_options()
     {
         $stub = $this->getMockForAbstractClass(AbstractSocket::class);
         $stub->expects($this->any())
@@ -52,7 +53,7 @@ class AbstractSocketTest extends BaseTestCase
      * @param $name
      * @param $value
      * @return void
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function setProperty($stub, $name, $value)
     {
