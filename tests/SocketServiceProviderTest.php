@@ -33,7 +33,6 @@ class SocketServiceProviderTest extends BaseTestCase
      */
     protected $provider;
 
-
     protected function setUp(): void
     {
         parent::setUp();
