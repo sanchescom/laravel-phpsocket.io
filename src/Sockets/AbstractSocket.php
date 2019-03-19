@@ -5,7 +5,7 @@ namespace Sanchescom\LaravelSocketIO\Sockets;
 use PHPSocketIO\SocketIO;
 
 /**
- * Class AbstractSocket
+ * Class AbstractSocket.
  */
 abstract class AbstractSocket
 {
@@ -22,7 +22,6 @@ abstract class AbstractSocket
      * @var array
      */
     protected $options;
-
 
     /**
      * @param SocketIO $socketIO

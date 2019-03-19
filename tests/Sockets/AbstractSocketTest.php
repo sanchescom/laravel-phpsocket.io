@@ -8,7 +8,7 @@ use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 use Sanchescom\LaravelSocketIO\Test\BaseTestCase;
 
 /**
- * Class AbstractSocketTest
+ * Class AbstractSocketTest.
  */
 class AbstractSocketTest extends BaseTestCase
 {
@@ -16,7 +16,6 @@ class AbstractSocketTest extends BaseTestCase
      * @var AbstractSocket
      */
     protected $handler;
-
 
     /**
      * @test
@@ -34,7 +33,6 @@ class AbstractSocketTest extends BaseTestCase
         /* @var AbstractSocket $stub */
         $this->assertIsInt($stub->getPort());
     }
-
 
     /**
      * @test

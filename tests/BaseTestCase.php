@@ -6,7 +6,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class BaseTestCase
+ * Class BaseTestCase.
  */
 abstract class BaseTestCase extends TestCase
 {

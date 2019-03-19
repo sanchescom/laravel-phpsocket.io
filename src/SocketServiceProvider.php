@@ -7,7 +7,7 @@ use PHPSocketIO\SocketIO;
 use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
 
 /**
- * Class SocketServiceProvider
+ * Class SocketServiceProvider.
  */
 class SocketServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,6 @@ class SocketServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sockets = [];
-
 
     /**
      * Bootstrap the application events.
@@ -58,7 +57,7 @@ class SocketServiceProvider extends ServiceProvider
     /**
      * Make socket instance.
      *
-     * @param int $port
+     * @param int   $port
      * @param array $options
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
