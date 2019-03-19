@@ -31,6 +31,11 @@
             "Sanchescom\\LaravelSocketIO\\Test\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --coverage-text --colors=never",
+        "check-style": "./vendor/bin/phpcs -p --standard=PSR2 ./app ./config",
+        "fix-style": "./vendor/bin/phpcbf --standard=PSR2 ./app ./config"
+    },
     "extra": {
         "laravel": {
             "providers": [
