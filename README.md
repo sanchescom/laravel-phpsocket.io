@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/sanchescom/laravel-phpsocket.io.svg?branch=master)](https://travis-ci.org/sanchescom/laravel-phpsocket.io)
 [![codecov](https://codecov.io/gh/sanchescom/laravel-phpsocket.io/branch/master/graph/badge.svg)](https://codecov.io/gh/sanchescom/laravel-phpsocket.io)
+[![Maintainability](https://api.codeclimate.com/v1/badges/852384730259754d4008/maintainability)](https://codeclimate.com/github/sanchescom/laravel-phpsocket.io/maintainability)
 # Laravel with phpsocket.io
 
 This is Laravel package for phpsocket.io which is a server side alternative implementation of socket.io in PHP based on Workerman.
@@ -74,7 +75,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Efimov Aleksandr** - *Initial work* - [Sanchescom](https://github.com/sanchescom)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
