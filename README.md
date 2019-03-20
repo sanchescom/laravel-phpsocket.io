@@ -19,63 +19,122 @@ Require this package, with [Composer](https://getcomposer.org/), in the root dir
 $ composer require sanchescom/laravel-phpsocket.io
 ```
 
-And repeat
-
-```
-until finished
-```
-
-## Usage
+Create `SocketServiceProvider.php` in `app/Providers`
 
 ``` php
 <?php
 
-namespace Vendor\Package;
+namespace App\Providers;
 
-class ServiceProvider extends \BrianFaust\ServiceProvider\ServiceProvider
+use Sanchescom\LaravelSocketIO\SocketServiceProvider as ServiceProvider;
+use App\Sockets\ExampleSocket;
+
+/**
+ * Class SocketServiceProvider.
+ */
+class SocketServiceProvider extends ServiceProvider
 {
-    public function boot()
-    {
-        $this->publishMigrations();
-        $this->publishConfig();
-        $this->publishViews();
-        $this->publishAssets();
-        $this->loadViews();
-        $this->loadTranslations();
-    }
+    /**
+     * The socket handlers for the application.
+     *
+     * @var array
+     */
+    protected $sockets = [
+        ExampleSocket::class,
+    ];
+}
+```
 
-    public function register()
+### Laravel 5.x:
+
+After updating composer, add the ServiceProvider to the providers array in `config/app.php`
+
+ ```php
+'providers' => [
+    ...
+    App\Providers\SocketServiceProvider::class,
+],
+```
+
+### Lumen:
+
+After updating composer add the following lines to register provider in `bootstrap/app.php`
+
+```php
+$app->register(App\Providers\SocketServiceProvider::class);
+```
+  
+## Usage
+
+Create folder `app\Sockets` and put there `ExampleSocket.php`
+
+``` php
+<?php
+
+namespace App\Sockets;
+
+use PHPSocketIO\SocketIO;
+use Sanchescom\LaravelSocketIO\Sockets\AbstractSocket;
+use Workerman\Lib\Timer;
+
+class ExampleSocket extends AbstractSocket
+{
+    /**
+     * @var int
+     */
+    const TIME_INTERVAL = 4;
+
+    /**
+     * @var int
+     */
+    protected $port = 2020;
+
+    /**
+     * @var array
+     */
+    protected $options = [];
+
+    /**
+     * @param SocketIO $socketIO
+     */
+    public function call(SocketIO $socketIO): void
     {
-        $this->mergeConfig();
+        $socketIO->on('workerStart', function () use ($socketIO) {
+            Timer::add(self::TIME_INTERVAL, function () use ($socketIO) {
+                $socketIO->to('room')->emit('score', [
+                    'items' => [
+                        [
+                            'id' => 1,
+                            'message' => 'Hello world'
+                        ],
+                    ]
+                ]);
+            });
+        });
+
+        $socketIO->on('connection', function ($socket) {
+            $socket->join('room');
+        });
     }
 }
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+## Running
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-``` bash
-$ phpunit
+### Start
+```bash
+$ ./vendor/bin/socket start
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-``` bash
-$ composer check-style
+### Stop:
+```bash
+$ ./vendor/bin/socket stop
 ```
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+### Status
+```bash
+$ ./vendor/bin/socket status
+```
 
 ## Contributing
 
@@ -83,7 +142,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/sanchescom/laravel-phpsocket.io/tags). 
 
 ## Authors
 

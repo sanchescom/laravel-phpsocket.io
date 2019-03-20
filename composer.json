@@ -33,8 +33,8 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --coverage-text --colors=never",
-        "check-style": "./vendor/bin/phpcs -p --standard=PSR2 ./app ./config",
-        "fix-style": "./vendor/bin/phpcbf --standard=PSR2 ./app ./config"
+        "check-style": "./vendor/bin/phpcs -p --standard=PSR2 ./src",
+        "fix-style": "./vendor/bin/phpcbf --standard=PSR2 ./src"
     },
     "extra": {
         "laravel": {

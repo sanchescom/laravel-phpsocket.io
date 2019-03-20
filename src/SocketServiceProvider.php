@@ -28,6 +28,7 @@ class SocketServiceProvider extends ServiceProvider
     public function boot(): bool
     {
         foreach ($this->sockets as $handler) {
+            // @codeCoverageIgnoreStart
             $socketHandler = $this->makeSocketHandler($handler);
             $socketHandler->call(
                 $this->makeSocket(
@@ -35,6 +36,7 @@ class SocketServiceProvider extends ServiceProvider
                     $socketHandler->getOptions()
                 )
             );
+            // @codeCoverageIgnoreEnd
         }
 
         return true;
